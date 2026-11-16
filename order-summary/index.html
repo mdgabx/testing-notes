@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Shopping Cart Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="shopping-cart-container" class="flex flex-col lg:flex-row">
+      <div id="products-container">
+        <div class="card">
+          <h2 class="text-lg">Fender American Professional II Stratocaster </h2>
+          <p class="quantity">3</p>
+          <p class="price">$5000</p>
+          <button class="remove-button bg-red-600 hover:bg-red-400">Remove</button>
+        </div>
+        <div class="card">
+          <h2 class="text-lg">Moog Subsequent 37 Analog Synthesizer</h2>
+          <p class="quantity">2</p>
+          <p class="price">$1200</p>
+          <button class="remove-button bg-red-600 hover:bg-red-400">Remove</button>
+        </div>
+      </div>
+
+      <div id="order-summary-container" class="ring-1 ring-gray-300 rounded-md border-4">
+        <h2>Order Summary</h2>
+      </div>
+    </div>
+  </body>
+</html>
