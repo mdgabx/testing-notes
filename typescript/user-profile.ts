@@ -13,3 +13,12 @@ const profile: {
 
 console.log(profile);
 
+const userRoles: Record<string, string> = {
+  admin: "full-access",
+  editor: "limited-access",
+  viewer: "read-only",
+  moderator: "medium-access",
+  guest: "read-only"
+};
+
+console.log(userRoles);
