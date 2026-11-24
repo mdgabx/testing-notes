@@ -78,3 +78,66 @@ const calculateArea = (shape: Shapes): string => {
   }
 };
 
+const clearInputFields = () => {
+  document.querySelectorAll("input").forEach((input) => {
+    input.value = "";
+  });
+};
+
+function updateResult() {
+  const shape = shapeTypeSelect.value;
+  let result: string = "";
+
+  if (shape === "circle") {
+    result = calculateArea({
+      type: "circle",
+      radius: Number(propertyInputs.radius.value),
+    });
+  } else if (shape === "rectangle") {
+    result = calculateArea({
+      type: "rectangle",
+      width: Number(propertyInputs.width.value),
+      height: Number(propertyInputs.height.value),
+    });
+  } else if (shape === "triangle") {
+    result = calculateArea({
+      type: "triangle",
+      base: Number(propertyInputs.base.value),
+      height: Number(propertyInputs.triangleHeight.value),
+    });
+  }
+
+  resultText.textContent = result;
+}
+
+const handleShapeSelect = (e: Event) => {
+  e.preventDefault();
+  clearInputFields();
+
+  const val = e.currentTarget as HTMLSelectElement;
+  if (!val) {
+    return "target value not found";
+  }
+
+  const hasSelection = Boolean(val.value);
+  toggleResultCard(hasSelection);
+
+  chooseShape(val.value);
+  updateResult();
+};
+
+const handleInput = (e: Event) => {
+  const value = Number((e.target as HTMLInputElement).value);
+
+  if (value < 0) {
+    alert("Negative values are not allowed.");
+    clearInputFields();
+  }
+
+  updateResult();
+};
+
+const initializeApp = () => {
+
+};
+
