@@ -138,6 +138,9 @@ const handleInput = (e: Event) => {
 };
 
 const initializeApp = () => {
+  shapeTypeSelect = getElement("shape-type") as HTMLSelectElement;
 
+  
 };
 
+document.addEventListener("DOMContentLoaded", initializeApp);
