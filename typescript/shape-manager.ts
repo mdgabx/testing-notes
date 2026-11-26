@@ -140,7 +140,28 @@ const handleInput = (e: Event) => {
 const initializeApp = () => {
   shapeTypeSelect = getElement("shape-type") as HTMLSelectElement;
 
-  
+  propertyGroups = {
+    circle: getElement("circle-props") as HTMLElement,
+    rectangle: getElement("rectangle-props") as HTMLElement,
+    triangle: getElement("triangle-props") as HTMLElement,
+  };
+
+  propertyInputs = {
+    radius: getElement("radius") as HTMLInputElement,
+    width: getElement("width") as HTMLInputElement,
+    height: getElement("height") as HTMLInputElement,
+    base: getElement("base") as HTMLInputElement,
+    triangleHeight: getElement("triangle-height") as HTMLInputElement,
+  };
+
+  resultText = getElement("result-text") as HTMLElement;
+  resultCard = getElement("result-card") as HTMLElement;
+
+  shapeTypeSelect.oninput = handleShapeSelect;
+
+  for (const [, input] of Object.entries(propertyInputs)) {
+    input.oninput = handleInput;
+  }
 };
 
 document.addEventListener("DOMContentLoaded", initializeApp);
