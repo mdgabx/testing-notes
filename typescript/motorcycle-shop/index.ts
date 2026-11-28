@@ -12,8 +12,6 @@ interface Motorcycle {
     year: number;
 }
 
-
-
 const fetchMotorcycles = async (): Promise<Motorcycle[]> => {
     const url = "https://cdn.freecodecamp.org/curriculum/labs/data/motorcycle-shop/motorcycles.json";
 
@@ -64,22 +62,33 @@ class MotorcycleGalleryApp {
 
     public renderMotorcycles() {
         const grid = document.getElementById("motorcycle-grid") as HTMLElement;
+        const term = this.filterTerm.trim().toLowerCase();
 
-        grid.innerHTML = this.allMotorcycles
-            .map((motorcycle) => renderMotorcycleCard(motorcycle))
-            .join("");
+        const matches = this.allMotorcycles.filter((motorcycle) => motorcycle.name.toLowerCase().includes(term));
+
+        grid.innerHTML = matches.map((m) => renderMotorcycleCard(m)).join("")
 
         // setting the motorcycles count
         const count = document.getElementById("results-number") as HTMLElement;
         if (count) {
-            count.textContent = String(this.allMotorcycles.length);
+            count.textContent = String(matches.length);
         }
-
     };
+
+    public setTerm(term: string) {
+      this.filterTerm = term;
+      this.renderMotorcycles();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
     const app = new MotorcycleGalleryApp();
     await app.loadData();
     app.renderMotorcycles();
+
+    // searching part
+    const searchInput = document.getElementById("name-filter-input") as HTMLInputElement;
+    searchInput.addEventListener("input", () => {
+      app.setTerm(searchInput.value)
+    })
 })
